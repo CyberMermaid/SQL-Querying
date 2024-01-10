@@ -27,4 +27,9 @@
 -- Find all the categories that have more than 300 apps in them. -- 
 14. SELECT category FROM analytics GROUP BY category HAVING COUNT(*) > 300;
 -- Find the app that has the highest proportion of min_installs to reviews, among apps that have been installed at least 100,000 times. Display the name of the app along with the number of reviews, the min_installs, and the proportion. --
-15. 
+15. SELECT app_name, reviews, min_installs,  min_installs / reviews AS proportion
+    FROM analytics
+    WHERE min_installs >= 100000
+    ORDER BY proportion DESC
+    LIMIT 1;
+
